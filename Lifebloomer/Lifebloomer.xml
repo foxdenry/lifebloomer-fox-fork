@@ -1,0 +1,950 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Lifebloomer.lua"></Script>
+	<Button name="LifebloomerUnitTemplate" frameStrata="MEDIUM" virtual="true" hidden="false" inherits="SecureUnitButtonTemplate" enableMouse="true">
+		<Size>
+			<AbsDimension x="180" y="40"/>
+		</Size>
+		<Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\Lifebloomer\memberBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+			<Color r="0" g="0" b="0" a=".25"/>
+			<BorderColor r="1" g="1" b="1" a="1"/>
+		</Backdrop>
+		<Frames>
+			<StatusBar name="$parentHPBar" inherits="TextStatusBar">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g=".8" b="0" a="1" />
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentIconCircle" file="Interface\Addons\Lifebloomer\RaidIcons\Circle" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconDiamond" file="Interface\Addons\Lifebloomer\RaidIcons\Diamond" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconMoon" file="Interface\Addons\Lifebloomer\RaidIcons\Moon" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconSkull" file="Interface\Addons\Lifebloomer\RaidIcons\Skull" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconSquare" file="Interface\Addons\Lifebloomer\RaidIcons\Square" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconStar" file="Interface\Addons\Lifebloomer\RaidIcons\Star" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconTriangle" file="Interface\Addons\Lifebloomer\RaidIcons\Triangle" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						<Texture name="$parentIconX" file="Interface\Addons\Lifebloomer\RaidIcons\X" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.75"/>
+						</Texture>
+						
+						<Texture name="$parentIconRole" file="Interface\LFGFrame\UI-LFG-ICON-ROLES" alphaMode="BLEND" hidden="true">
+							<Size>
+								<AbsDimension x="14" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="-0.3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="$parentName" inherits="GameFontNormalSmall" text="Target" justifyH="LEFT" justifyV="CENTER" hidden="false" outline="normal">
+							<!-- <FontHeight val="12"/> -->
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<!-- <Color r="0" b="0" g=".1" a=".5"/>
+							<Shadow>
+								<Color a="0"/>
+							</Shadow> -->
+						</FontString>
+						<FontString name="$parentDTPS" justifyH="RIGHT" justifyV="CENTER" hidden="false" inherits="GameFontNormalSmall" text="0">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-12" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="0" b="1" g="1" a="1"/>
+							<Shadow>
+								<Color a="0"/>
+							</Shadow>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(1);
+						self:EnableMouse(false);
+					</OnLoad>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentLBBar" inherits="TextStatusBar">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g=".2" b=".5" a=".8" />
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentTimer" justifyH="LEFT" justifyV="MIDDLE" hidden="false" inherits="GameFontHighlightSmall" text="">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-30" y="0"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNumber" justifyH="MIDDLE" justifyV="MIDDLE" hidden="false" inherits="GameFontHighlightSmall" text="">
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOM" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGCD" file="Interface\AddOns\Lifebloomer\GCD" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="39" y="-1"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOM" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="39" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1" a="0.5"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:EnableMouse(false);
+					</OnLoad>
+					<OnShow>
+						self:SetValue(0);
+					</OnShow>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentRejuvBar" inherits="TextStatusBar" frameStrata="HIGH">
+				<Size>
+					<AbsDimension y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r=".5" g="0" b=".5" a="1" />
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(0);
+						self:EnableMouse(false);
+					</OnLoad>
+					<OnShow>
+						self:SetValue(0);
+					</OnShow>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentGerBar" inherits="TextStatusBar" frameStrata="HIGH">
+				<Size>
+					<AbsDimension y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="5" y="-2"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="1" a="1" />
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(0);
+						self:EnableMouse(false);
+					</OnLoad>
+					<OnShow>
+						self:SetValue(0);
+					</OnShow>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentRegroBar" inherits="TextStatusBar" frameStrata="HIGH">
+				<Size>
+					<AbsDimension y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="0" a="1" />
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(0);
+						self:EnableMouse(false);
+					</OnLoad>
+					<OnShow>
+						self:SetValue(0);
+					</OnShow>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentWildBar" inherits="TextStatusBar" frameStrata="HIGH">
+				<Size>
+					<AbsDimension y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="0" a="1" />
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(0);
+						self:EnableMouse(false);
+					</OnLoad>
+					<OnShow>
+						self:SetValue(0);
+					</OnShow>
+				</Scripts>
+			</StatusBar>
+			<Button name="$parentTargetButton">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\Lifebloomer\Buttons\Target"/>
+				<PushedTexture file="Interface\AddOns\Lifebloomer\Buttons\Target-Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Lifebloomer\Buttons\Target-Highlight"/>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						self:RegisterEvent("PLAYER_REGEN_ENABLED");
+						self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+						GameTooltip:SetText("Sets frame's target to your current target.");
+						GameTooltip:AddLine("Frame's target: "..self:GetParent():GetAttribute("unit"));
+						GameTooltip:AddLine("Your target: "..Lifebloomer_ID_Unit("target"));
+						GameTooltip:AddLine("Right click for more options.");
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						if button == "LeftButton" then
+							Set_LBTarget("target", 0, self:GetParent());
+							GameTooltip:Hide();
+							GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+							GameTooltip:SetText("Sets frame's target to your current target.");
+							GameTooltip:AddLine("Frame's target: "..self:GetParent():GetAttribute("unit"));
+							GameTooltip:AddLine("Your target: "..Lifebloomer_ID_Unit("target"));
+							GameTooltip:AddLine("Right click for more options.");
+							GameTooltip:Show();
+						elseif button == "RightButton" then
+							if LifebloomerTargetOptionsFrame:IsVisible() then
+								LifebloomerTargetOptionsFrame:Hide();
+							else
+								LifebloomerTargetOptionsFrame:SetPoint("TOPLEFT", self, "CENTER");
+								LifebloomerTargetOptionsFrame:Show();
+								Lifebloomer_TargetOptionFrame = self:GetParent();
+							end
+						end
+					</OnClick>
+					<OnEvent>
+						if not LBSaved.Lock then
+							if event == "PLAYER_REGEN_DISABLED" then
+								self:Hide();
+							elseif event == "PLAYER_REGEN_ENABLED" then
+								self:Show();
+							end
+						end
+					</OnEvent>
+				</Scripts>
+			</Button>
+			<Button name="$parentReduceButton">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentTargetButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\Lifebloomer\Buttons\Remove"/>
+				<PushedTexture file="Interface\AddOns\Lifebloomer\Buttons\Remove-Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Lifebloomer\Buttons\Remove-Highlight"/>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						self:RegisterEvent("PLAYER_REGEN_ENABLED");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+						GameTooltip:SetText("Remove Unit Frame");
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						Lifebloomer_RemoveFrame(self:GetParent());
+					</OnClick>
+					<OnEvent>
+						if not LBSaved.Lock then
+							if event == "PLAYER_REGEN_DISABLED" then
+								self:Hide();
+							elseif event == "PLAYER_REGEN_ENABLED" then
+								self:Show();
+							end
+						end
+					</OnEvent>
+				</Scripts>
+			</Button>
+			<Button name="$parentIncreaseButton">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentTargetButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\Lifebloomer\Buttons\Add"/>
+				<PushedTexture file="Interface\AddOns\Lifebloomer\Buttons\Add-Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Lifebloomer\Buttons\Add-Highlight"/>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						self:RegisterEvent("PLAYER_REGEN_ENABLED");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+						GameTooltip:SetText("Add Unit Frame");
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						Lifebloomer_AddFrame(self);
+					</OnClick>
+					<OnEvent>
+						if not LBSaved.Lock then
+							if event == "PLAYER_REGEN_DISABLED" then
+								self:Hide();
+							elseif event == "PLAYER_REGEN_ENABLED" then
+								self:Show();
+							end
+						end
+					</OnEvent>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("AnyUp");
+				self:RegisterEvent("PLAYER_FOCUS_CHANGED");
+				self:RegisterEvent("PLAYER_TARGET_CHANGED");
+				-- self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+				self:SetAttribute("type", "target");
+				self:SetAttribute("unit", "target");
+			</OnLoad>
+			<OnEnter>
+				Lifebloomer_UnitFrame_OnEnter(self);
+			</OnEnter>
+			<OnLeave>
+				if ( SpellIsTargeting() ) then
+					SetCursor("CAST_ERROR_CURSOR");
+				end
+			</OnLeave>
+			<OnEvent>
+				Lifebloomer_OnEvent(self, event, ...);
+			</OnEvent>
+			<OnShow>
+				self.TimeSinceLastUpdate = 0;
+				self.LBTimer = 0;
+				self.RejuvTimer = 0;
+				self.RegroTimer = 0;
+				self.WildTimer = 0;
+			</OnShow>
+			<OnUpdate>
+				Lifebloomer_UnitHealth_Update(self, elapsed);
+				Lifebloomer_UnitFrame_Update(self, elapsed);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+	<Frame name="LifebloomerMainFrame" frameStrata="MEDIUM" hidden="true" enableMouse="true" movable="true" clampedToScreen="true" id="0" parent="UIParent">
+		<Size>
+			<AbsDimension x="180" y="56"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="CENTER" />
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" justifyH="CENTER" justifyV="MIDDLE" hidden="false" inherits="GameFontNormal" text="Lifebloomer">
+					<Size>
+						<AbsDimension x="80" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<StatusBar name="$parentGCDBar" inherits="TextStatusBar" frameStrata="HIGH">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-21"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="1" g="0" b="0" a=".3" />
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 1);
+						self:SetValue(0);
+						self:EnableMouse(false);
+						self.TimeSinceLastUpdate = 0;
+					</OnLoad>
+					<OnUpdate>
+						Lifebloomer_GCDUpdate(self, elapsed);
+					</OnUpdate>
+				</Scripts>
+			</StatusBar>
+			<Button name="$parentReduceButton">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\Lifebloomer\Buttons\Remove"/>
+				<PushedTexture file="Interface\AddOns\Lifebloomer\Buttons\Remove-Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Lifebloomer\Buttons\Remove-Highlight"/>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						self:RegisterEvent("PLAYER_REGEN_ENABLED");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+						GameTooltip:SetText("Hide Lifebloomer");
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						self:GetParent():Hide();
+					</OnClick>
+					<OnEvent>
+						if not LBSaved.Lock then
+							if event == "PLAYER_REGEN_DISABLED" then
+								self:Hide();
+							elseif event == "PLAYER_REGEN_ENABLED" then
+								self:Show();
+							end
+						end
+					</OnEvent>
+				</Scripts>
+			</Button>
+			<Button name="$parentIncreaseButton">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentReduceButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\Lifebloomer\Buttons\Add"/>
+				<PushedTexture file="Interface\AddOns\Lifebloomer\Buttons\Add-Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Lifebloomer\Buttons\Add-Highlight"/>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						self:RegisterEvent("PLAYER_REGEN_ENABLED");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+						GameTooltip:SetText("Add Unit Frame");
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						Lifebloomer_AddFrame(self);
+					</OnClick>
+					<OnEvent>
+						if not LBSaved.Lock then
+							if event == "PLAYER_REGEN_DISABLED" then
+								self:Hide();
+							elseif event == "PLAYER_REGEN_ENABLED" then
+								self:Show();
+							end
+						end
+					</OnEvent>
+				</Scripts>
+			</Button>
+			<Button name="$parentUnitFrame1" inherits="LifebloomerUnitTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOP" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-16" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Frame name="LifebloomerTargetOptionsFrame" hidden="true" frameStrata="TOOLTIP">
+				<Size>
+					<AbsDimension x="156" y="72"/>
+				</Size>
+				<Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\Lifebloomer\memberBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="3" right="3" top="3" bottom="3"/>
+					</BackgroundInsets>
+					<Color r=".1" g=".1" b=".1" a=".5"/>
+					<BorderColor r="1" g="1" b="1" a="1"/>
+				</Backdrop>
+				<Frames>
+					<Button name="$parentTarget" clampedToScreen="true" >
+						<Size>
+							<AbsDimension x="136" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<FontString name="$parentText" text="Target" justifyH="LEFT" justifyV="MIDDLE" inherits="GameFontHighlightSmall">
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+										<Anchor point="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>
+								LifebloomerTargetOptionsFrameTargetText:SetTextColor(1,1.22,0);
+							</OnEnter>
+							<OnLeave>
+								LifebloomerTargetOptionsFrameTargetText:SetTextColor(1,1,1);
+							</OnLeave>
+							<OnClick>
+								LifebloomerTargetOptionsFrame:Hide();
+								Set_LBTarget(0, "target", Lifebloomer_TargetOptionFrame);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentFocus" clampedToScreen="true" >
+						<Size>
+							<AbsDimension x="136" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentTarget" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<FontString name="$parentText" text="Focus" justifyH="LEFT" justifyV="MIDDLE" inherits="GameFontHighlightSmall">
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+										<Anchor point="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>
+								LifebloomerTargetOptionsFrameFocusText:SetTextColor(1,1.22,0);
+							</OnEnter>
+							<OnLeave>
+								LifebloomerTargetOptionsFrameFocusText:SetTextColor(1,1,1);
+							</OnLeave>
+							<OnClick>
+								LifebloomerTargetOptionsFrame:Hide();
+								Set_LBTarget(0, "focus", Lifebloomer_TargetOptionFrame);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentMouseover" clampedToScreen="true" >
+						<Size>
+							<AbsDimension x="136" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentFocus" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<FontString name="$parentText" text="Mouseover" justifyH="LEFT" justifyV="MIDDLE" inherits="GameFontHighlightSmall">
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+										<Anchor point="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>
+								LifebloomerTargetOptionsFrameMouseoverText:SetTextColor(1,1.22,0);
+							</OnEnter>
+							<OnLeave>
+								LifebloomerTargetOptionsFrameMouseoverText:SetTextColor(1,1,1);
+							</OnLeave>
+							<OnClick>
+								LifebloomerTargetOptionsFrame:Hide();
+								Set_LBTarget(0, "mouseover", Lifebloomer_TargetOptionFrame);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentTargetTarget" clampedToScreen="true" >
+						<Size>
+							<AbsDimension x="136" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentMouseover" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<FontString name="$parentText" text="Target of Frame's Target" justifyH="LEFT" justifyV="MIDDLE" inherits="GameFontHighlightSmall">
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+										<Anchor point="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>
+								LifebloomerTargetOptionsFrameTargetTargetText:SetTextColor(1,1.22,0);
+							</OnEnter>
+							<OnLeave>
+								LifebloomerTargetOptionsFrameTargetTargetText:SetTextColor(1,1,1);
+							</OnLeave>
+							<OnClick>
+								LifebloomerTargetOptionsFrame:Hide();
+								local unit = LBV[Lifebloomer_TargetOptionFrame:GetID()].Unitid;
+								local name,_ = UnitName(unit);
+								if unit == name then
+									unit = Lifebloomer_UnitRaidIndex(unit);
+								end
+								local newunit = unit.."target";
+								Set_LBTarget(0, newunit, Lifebloomer_TargetOptionFrame);
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("PLAYER_REGEN_DISABLED");
+						LifebloomerTargetOptionsFrame.Elapsed = 0;
+					</OnLoad>
+					<OnEvent>
+						if event == "PLAYER_REGEN_DISABLED" then
+							self:Hide();
+						end
+					</OnEvent>
+					<OnUpdate>
+						if not MouseIsOver(LifebloomerTargetOptionsFrame) then
+							LifebloomerTargetOptionsFrame.Elapsed = LifebloomerTargetOptionsFrame.Elapsed + elapsed;
+							if LifebloomerTargetOptionsFrame.Elapsed > 2 then
+								LifebloomerTargetOptionsFrame:Hide();
+								LifebloomerTargetOptionsFrame.Elapsed = 0;
+							end
+						else LifebloomerTargetOptionsFrame.Elapsed = 0; end
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("ADDON_LOADED");
+				self:RegisterEvent("PLAYER_REGEN_ENABLED");
+				self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+				self:RegisterForDrag("LeftButton");
+				
+				self:RegisterEvent("PLAYER_ENTERING_WORLD");
+				self:RegisterEvent("GROUP_JOINED");
+				self:RegisterEvent("GROUP_ROSTER_UPDATE");
+			</OnLoad>
+			<OnDragStart>
+				self:StartMoving();
+			</OnDragStart>
+			<OnMouseUp>
+				self:StopMovingOrSizing();
+			</OnMouseUp>
+			<OnDragStop>
+				self:StopMovingOrSizing();
+			</OnDragStop>
+			<OnShow>
+				LBSaved.Vis = 1;
+			</OnShow>
+			<OnHide>
+				LBSaved.Vis = nil;
+			</OnHide>
+			<OnEvent>
+				local arg1 = ...;
+                if event == "COMBAT_LOG_EVENT_UNFILTERED" then
+					Lifebloomer_CombatLogEvent(self, event, ...);
+				elseif event == "ADDON_LOADED" and arg1 == "Lifebloomer" then
+					Lifebloomer_OnLoad();
+				elseif event == "PLAYER_REGEN_ENABLED" then
+					if LBSaved.Lock then
+						self:EnableMouse(false);
+						LifebloomerMainFrameText:Hide();
+					else
+						self:EnableMouse(true);
+						LifebloomerMainFrameText:Show();
+					end
+				elseif event == "GROUP_JOINED" or event == "GROUP_ROSTER_UPDATE" then
+					if LBSaved.AutoGenerateFrames then
+						Lifebloomer_AutoGenerateGroupFrames();
+					end
+				elseif event == "PLAYER_ENTERING_WORLD" then
+					Lifebloomer_OnTalentInfoAvailable()
+				end
+			</OnEvent>
+			<OnUpdate>
+				Lifebloomer_MainFrameOnUpdate(self, elapsed);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>
+
+<!-- vim: set sw=8 sts=8 noexpandtab: -->

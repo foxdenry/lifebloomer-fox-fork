@@ -1,0 +1,34 @@
+Lifebloomer Version 3.5
+---------------
+
+- Added an option for Lifebloomer to auto manage group creation! (just like every other party/raid addon out there! lol!)
+  Lifebloomer will update its frames whenever you enter a group (any party or raid) and whenever players enter or leave the group
+  If you wish to disable this check the main tab of the Lifebloomer options screen
+  (WoW menu -> Interface -> Select the Addons tab -> Click Lifebloomer from the side menu)
+  
+- Added Role Icons! Only when using the slash commands /lb p or /lb ra or auto group creation
+  The command /lb sr isn't included because it's implemented in a very weird way (it wasn't me, I swear!), so improvements to it will be coming in the future
+  The icons appear on the left side of each frame. >>>>>>>>>TODO: To disable or enable them, go to the "Appearance" tab of the Lifebloomer options screen.<<<<<<<<<<<<<<
+
+>>>>>>>>>TODO: - Added an option to disable role sorting. This option is located in the main tab of the Lifebloomer options screen.<<<<<<<<<<<<<<
+
+- Fixed a bug that could cause Lifebloomer to stop working if a member of your group had no selected talent specialization
+
+- Fixed a bug that could cause Lifebloomer, in very specific circumstances, to move from its position after a UI reload or login.
+
+- Fixed a bug where adding new frames while Lifebloomer was unlocked would not show the buttons next to the frames (no, it's not the same bug as last time)
+
+
+Lifebloomer Version 3.4.2 (beta)
+---------------
+
+- Role sorting improvement: if a player has no assigned role, their role will be determined by their spec
+
+
+Lifebloomer Version 3.4.1
+---------------
+
+- Generating party and raid frames (/lb p and /lb ra) will now sort group members by role in the following order: Tanks, Healers and then DPS
+- Fixed a bug where adding new frames while Lifebloomer was locked would not hide the buttons next to the frames
+- Fixed a bug that caused the Global Cooldown bar to sometimes be bigger than intended
+- Added missing slash commands to the options screen

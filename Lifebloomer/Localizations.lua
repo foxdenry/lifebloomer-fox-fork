@@ -1,0 +1,20 @@
+﻿
+LIFEBLOOMER_None = "None";
+LIFEBLOOMER_Target = "Target";
+LIFEBLOOMER_Lifebloom,_,_,_,_,_,_,_,_,_ = GetSpellInfo(33763);
+LIFEBLOOMER_Rejuvenation,_,_,_,_,_,_,_,_,_ = GetSpellInfo(774);
+LIFEBLOOMER_Germination,_,_,_,_,_,_,_,_,_ = GetSpellInfo(155777);
+LIFEBLOOMER_Regrowth,_,_,_,_,_,_,_,_,_ = GetSpellInfo(8936);
+LIFEBLOOMER_Wild_Growth,_,_,_,_,_,_,_,_,_ = GetSpellInfo(48438);
+LIFEBLOOMER_Healing_Touch,_,_,_,_,_,_,_,_,_ = GetSpellInfo(5185);
+--LIFEBLOOMER_Nourish,_,_,_,_,_,_,_,_,_ = GetSpellInfo(50464);
+LIFEBLOOMER_Swiftmend,_,_,_,_,_,_,_,_,_ = GetSpellInfo(18562);
+--LIFEBLOOMER_Remove_Curse,_,_,_,_,_,_,_,_,_ = GetSpellInfo(2782);
+LIFEBLOOMER_Rebirth,_,_,_,_,_,_,_,_,_ = GetSpellInfo(20484);
+LIFEBLOOMER_Mark_of_the_Wild,_,_,_,_,_,_,_,_,_ = GetSpellInfo(1126);
+--LIFEBLOOMER_Thorns,_,_,_,_,_,_,_,_,_ = GetSpellInfo(34343);
+LIFEBLOOMER_Natures_Swiftness,_,_,_,_,_,_,_,_,_ = GetSpellInfo(17116);
+LIFEBLOOMER_Frost_Blast = GetSpellInfo(27808);
+LIFEBLOOMER_Slag_Pot = GetSpellInfo(63477);
+LIFEBLOOMER_Incinerate_Flesh = GetSpellInfo(66237);
+LIFEBLOOMER_Penetrating_Cold = GetSpellInfo(68510);
