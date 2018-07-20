@@ -215,7 +215,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
         elseif event == "LifebloomerTrigger" then
 		local now = GetTime();
 		local down, up, lag = GetNetStats();
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Lifebloom, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Lifebloom, "PLAYER");
 		if isMine then
 			self.LBTimer = expirationTime - now - lag/1000;
 			self.LBMax = duration;
@@ -228,28 +228,28 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			self.Number:SetText("");
 			self.LBBarGCD:Hide();
 		end
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Rejuvenation, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Rejuvenation, "PLAYER");
 		if isMine then
 			self.RejuvTimer = expirationTime - now - lag/1000;
 			self.RejuvMax = duration;
 		else
 			self.RejuvTimer = 0;
 		end
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Germination, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Germination, "PLAYER");
 		if isMine then
 			self.GerTimer = expirationTime - now - lag/1000;
 			self.GerMax = duration;
 		else
 			self.GerTimer = 0;
 		end
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Regrowth, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Regrowth, "PLAYER");
 		if isMine then
 			self.RegroTimer = expirationTime - now - lag/1000;
 			self.RegroMax = duration;
 		else
 			self.RegroTimer = 0;
 		end
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Wild_Growth, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Wild_Growth, "PLAYER");
 		if isMine then
 			self.WildTimer = expirationTime - now - lag/1000;
 			self.WildMax = duration;
@@ -261,7 +261,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			local corruption = false;
 			for i = 1, 40, 1 do
 				if UnitExists(unit) then
-					local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitDebuff(unit, i);
+					local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitDebuff(unit, i);
 					if name == nil then
 						break;
 					elseif debuffType == "Poison" then
@@ -284,7 +284,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			end
                 end
 	elseif spellName == LIFEBLOOMER_Lifebloom then
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Lifebloom, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Lifebloom, "PLAYER");
 		if isMine then
 			local now = GetTime();
 			local down, up, lag = GetNetStats();
@@ -303,7 +303,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			self.LBBarGCD:Hide();
 		end
 	elseif spellName == LIFEBLOOMER_Rejuvenation then
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Rejuvenation, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Rejuvenation, "PLAYER");
 		if isMine then
 			local now = GetTime();
 			local down, up, lag = GetNetStats();
@@ -313,7 +313,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			self.RejuvTimer = 0;
 		end
 	elseif spellName == LIFEBLOOMER_Germination then
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Germination, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Germination, "PLAYER");
 		if isMine then
 			local now = GetTime();
 			local down, up, lag = GetNetStats();
@@ -323,7 +323,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			self.GerTimer = 0;
 		end
 	elseif spellName == LIFEBLOOMER_Regrowth then
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Regrowth, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Regrowth, "PLAYER");
 		if isMine then
 			local now = GetTime();
 			local down, up, lag = GetNetStats();
@@ -333,7 +333,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			self.RegroTimer = 0;
 		end
 	elseif spellName == LIFEBLOOMER_Wild_Growth then
-		local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unit, LIFEBLOOMER_Wild_Growth, nil, "PLAYER");
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Wild_Growth, "PLAYER");
 		if isMine then
 			local now = GetTime();
 			local down, up, lag = GetNetStats();
@@ -378,7 +378,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		local corruption = false;
 		for i = 1, 40, 1 do
 			if UnitExists(unit) then
-				local name, rank, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitDebuff(unit, i);
+				local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitDebuff(unit, i);
 				if name == nil then
 					break;
 				elseif debuffType == "Poison" then
@@ -1250,5 +1250,15 @@ function LB_CanonName(n)
 	return string.gsub(n, "%s?-%s?", "-");
 end
 
+-- Used to check if a given buff is currently applied to a unit. The UnitBuff API used to support lookup by spell name,
+-- but that functionality was removed as of patch 8.0.1. This function mimics that original functionality.
+function FindUnitBuffBySpellName(unitId, spellName, filter)
+	for i=1,40 do
+		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = UnitBuff(unitId, i, filter);
+		if name == spellName then
+			return name, icon, count, debuffType, duration, expirationTime, isMine, isStealable;
+		end
+	end
+end
 
 -- vim: sw=8 sts=8 noexpandtab 
