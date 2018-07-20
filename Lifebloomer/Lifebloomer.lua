@@ -584,7 +584,8 @@ function Lifebloomer_UnitFrame_Update(self, elapsed)
 			self.Name:SetText(unit);
 		end
 		
-		if IsSpellInRange(LIFEBLOOMER_Rejuvenation, unit) == 1 then
+		-- Using Regrowth to perform the range check as it's currently a spell available to all specs.
+		if IsSpellInRange(LIFEBLOOMER_Regrowth, unit) == 1 then
 			local i = self.HPBarColor or 2
 			self.HPBar:SetStatusBarColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A)
 			self.Name:SetTextColor(LBColors[10].R, LBColors[10].G, LBColors[10].B, LBColors[10].A);
@@ -629,7 +630,8 @@ function Lifebloomer_GCDUpdate(self, elapsed)
 	while self.TimeSinceLastUpdate > 0.05 do
 		self.TimeSinceLastUpdate = self.TimeSinceLastUpdate - 0.05;
 		if LB_GCD then
-			local start, duration, e = GetSpellCooldown(LIFEBLOOMER_Rejuvenation);
+			-- Using Regrowth to perform the GCD check as it's currently a spell with no cooldown available to all specs.
+			local start, duration, e = GetSpellCooldown(LIFEBLOOMER_Regrowth);
 			local seconds = GetTime();
 			self:SetValue((duration-(seconds-start))/duration);
 		end
