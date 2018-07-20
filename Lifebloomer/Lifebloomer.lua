@@ -587,12 +587,22 @@ function Lifebloomer_UnitFrame_Update(self, elapsed)
 		-- Using Regrowth to perform the range check as it's currently a spell available to all specs.
 		if IsSpellInRange(LIFEBLOOMER_Regrowth, unit) == 1 then
 			local i = self.HPBarColor or 2
-			self.HPBar:SetStatusBarColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A)
+			if LBSaved.ClassColorsEnabled and GetUnitClassColor(unit) then
+				local unitClassColor = GetUnitClassColor(unit)
+				self.HPBar:SetStatusBarColor(unitClassColor.r, unitClassColor.g, unitClassColor.b, LBColors[i].A)
+			else
+				self.HPBar:SetStatusBarColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A)
+			end
 			self.Name:SetTextColor(LBColors[10].R, LBColors[10].G, LBColors[10].B, LBColors[10].A);
 		else
 			local i = self.HPBarColor or 2
 			if LBSaved.DimOOR then
-				self.HPBar:SetStatusBarColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A / 2)
+				if LBSaved.ClassColorsEnabled and GetUnitClassColor(unit) then
+					local unitClassColor = GetUnitClassColor(unit)
+					self.HPBar:SetStatusBarColor(unitClassColor.r, unitClassColor.g, unitClassColor.b, LBColors[i].A / 2)
+				else
+					self.HPBar:SetStatusBarColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A / 2)
+				end
 			end
 			self.Name:SetTextColor(LBColors[11].R, LBColors[11].G, LBColors[11].B, LBColors[11].A);
 		end
@@ -623,6 +633,12 @@ function Lifebloomer_UnitFrame_Update(self, elapsed)
 
 		Lifebloomer_UnitFrame_Update_RaidIcons(self);
 	end
+end
+
+-- Retrieves the appropriate color for a given class as defined by the default UI
+function GetUnitClassColor(unit)
+	local unitClass, unitClassFileName = UnitClass(unit)
+	return RAID_CLASS_COLORS[unitClassFileName]
 end
 
 function Lifebloomer_GCDUpdate(self, elapsed)
