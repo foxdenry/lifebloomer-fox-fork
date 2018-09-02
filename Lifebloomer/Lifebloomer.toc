@@ -1,11 +1,11 @@
 ## Interface: 60200
 ## Title: Lifebloomer
 ## Author: Kryzarel
-## Version: 3.5
+## Version: 3.5.2
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: LBSaved,LBDim,LBColors,LBV,LBHandles
-## X-Curse-Packaged-Version: 3.5
+## X-Curse-Packaged-Version: 3.5.2
 ## X-Curse-Project-Name: Lifebloomer
 ## X-Curse-Project-ID: lifebloomer
 ## X-Curse-Repository-ID: wow/lifebloomer/mainline

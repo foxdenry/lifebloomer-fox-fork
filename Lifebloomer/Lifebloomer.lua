@@ -8,7 +8,7 @@ function Lifebloomer_OnLoad()
 	LBVplayername = LB_GetUnitName("player");
 	loc, LBVClass = UnitClass("player");
 	LBVLevel = UnitLevel("player");
-	LBVersion = "3.5";
+	LBVersion = "3.5.2";
 	LB_GCD_Time = 1.5;
 	LBVFF = 0;
 	LB_NameMap = {};
@@ -1124,6 +1124,10 @@ function Lifebloomer_SlashCommand(cmd)
 				Lifebloomer_RefreshNameMap();
 			end
 		end
+	elseif (cmd == "autogeneration" or cmd == "ag") then		
+		LBSaved.AutoGenerateFrames = not LBSaved.AutoGenerateFrames;		
+		DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFa|ruto|cFFFFFFFFg|reneration |cFFFFFFFF - Toggle Autogeration of Frames|r", 0, 1, 0);
+		DEFAULT_CHAT_FRAME:AddMessage("AutoGeneration of frames " .. (LBSaved.AutoGenerateFrames and "|cFFFFFFFFenabled|r" or "|cFFFF0000disabled|r"), 0, 1, 0);
 	else
 		Lifebloomer_CommandList();
 	end
@@ -1141,6 +1145,7 @@ function Lifebloomer_CommandList()
 	DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFs|rmart|cFFFFFFFFr|raid|cFFFFFFFF - Generate Raid Frames Without Disturbing Player-Set Frames|r", 0, 1, 0);
 	DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFd|refault |cFFFFFFFFn|rew |cFFFFFFFF - Reset All Settings to the New Default Values|r", 0, 1, 0);
 	DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFd|refault |cFFFFFFFFc|rlassic |cFFFFFFFF - Reset All Settings to the Classic Default Values|r", 0, 1, 0);
+	DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFa|ruto|cFFFFFFFFg|reneration |cFFFFFFFF - Toggle Autogeration of Frames|r", 0, 1, 0);
 end
 
 function Lifebloomer_DamageTaken(self, timestamp, event, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical, glancing, crushing)
