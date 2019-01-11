@@ -8,7 +8,7 @@ function Lifebloomer_OnLoad()
 	LBVplayername = LB_GetUnitName("player");
 	loc, LBVClass = UnitClass("player");
 	LBVLevel = UnitLevel("player");
-	LBVersion = "3.5.2";
+	LBVersion = "3.5.3";
 	LB_GCD_Time = 1.5;
 	LBVFF = 0;
 	LB_NameMap = {};
