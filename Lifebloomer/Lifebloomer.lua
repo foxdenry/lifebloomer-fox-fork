@@ -205,14 +205,14 @@ end
 function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, auraType, amount)
 	--DEFAULT_CHAT_FRAME:AddMessage(tostring(event)..tostring(sourceName)..tostring(destName)..tostring(spellName)..tostring(amount));
 	local unit = LBV[self:GetID()].Unitid;
-        if event == "UNIT_DIED" then
-			if self.frostBlast or self.slagPot then
-				self.frostBlast = false;
-				self.slagPot = false;
-				self.lockBorderColor = false;
-				self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
-			end
-        elseif event == "LifebloomerTrigger" then
+	if event == "UNIT_DIED" then
+		if self.frostBlast or self.slagPot then
+			self.frostBlast = false;
+			self.slagPot = false;
+			self.lockBorderColor = false;
+			self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
+		end
+	elseif event == "LifebloomerTrigger" then
 		local now = GetTime();
 		local down, up, lag = GetNetStats();
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Lifebloom, "PLAYER");
@@ -230,8 +230,21 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		end
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Rejuvenation, "PLAYER");
 		if isMine then
-			self.RejuvTimer = expirationTime - now - lag/1000;
-			self.RejuvMax = duration;
+			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
+				LibClassicDurations = LibStub("LibClassicDurations")
+				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 774, "player")
+				if expirationTimeNew and durationNew then
+					self.RejuvTimer = expirationTimeNew - now - lag/1000;
+					self.RejuvMax = durationNew;
+				else
+					self.RejuvTimer = 0;
+				end
+			else
+				-- Setting variables for Retail.
+				self.RejuvTimer = expirationTime - now - lag/1000;
+				self.RejuvMax = duration;
+			end
 		else
 			self.RejuvTimer = 0;
 		end
@@ -244,8 +257,21 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		end
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Regrowth, "PLAYER");
 		if isMine then
-			self.RegroTimer = expirationTime - now - lag/1000;
-			self.RegroMax = duration;
+			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
+				LibClassicDurations = LibStub("LibClassicDurations")
+				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 8936, "player")
+				if expirationTimeNew and durationNew then
+					self.RegroTimer = expirationTimeNew - now - lag/1000;
+					self.RegroMax = durationNew;
+				else
+					self.RegroTimer = 0;
+				end
+			else
+				-- Setting variables for Retail.
+				self.RegroTimer = expirationTime - now - lag/1000;
+				self.RegroMax = duration;
+			end
 		else
 			self.RegroTimer = 0;
 		end
@@ -256,8 +282,8 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		else
 			self.WildTimer = 0;
 		end
-                --debuff
-                if not self.lockBorderColor then
+		--debuff
+		if not self.lockBorderColor then
 			local corruption = false;
 			for i = 1, 40, 1 do
 				if UnitExists(unit) then
@@ -282,7 +308,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 			else
 				self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
 			end
-                end
+		end
 	elseif spellName == LIFEBLOOMER_Lifebloom then
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Lifebloom, "PLAYER");
 		if isMine then
@@ -342,38 +368,38 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		else
 			self.WildTimer = 0;
 		end
-        elseif event == "SPELL_AURA_APPLIED" and sourceName == "Kel'Thuzad" and spellName == LIFEBLOOMER_Frost_Blast then
-                self.frostBlast = true;
-                self.lockBorderColor = true;
-                self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
-        elseif event == "SPELL_AURA_REMOVED" and sourceName == "Kel'Thuzad" and spellName == LIFEBLOOMER_Frost_Blast then
-                self.frostBlast = false;
-                self.lockBorderColor = false;
-                self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
-        elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Slag_Pot then
-                self.slagPot = true;
-                self.lockBorderColor = true;
-                self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
-        elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Slag_Pot then
-                self.slagPot = false;
-                self.lockBorderColor = false;
-                self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
-        elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Incinerate_Flesh then
-                self.incinerateFlesh = true;
-                self.lockBorderColor = true;
-                self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
-        elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Incinerate_Flesh then
-                self.incinerateFlesh = false;
-                self.lockBorderColor = false;
-                self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
-        elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Penetrating_Cold then
-                self.penetratingCold = true;
-                self.lockBorderColor = true;
-                self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
-        elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Penetrating_Cold then
-                self.penetratingCold = false;
-                self.lockBorderColor = false;
-                self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
+	elseif event == "SPELL_AURA_APPLIED" and sourceName == "Kel'Thuzad" and spellName == LIFEBLOOMER_Frost_Blast then
+			self.frostBlast = true;
+			self.lockBorderColor = true;
+			self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
+	elseif event == "SPELL_AURA_REMOVED" and sourceName == "Kel'Thuzad" and spellName == LIFEBLOOMER_Frost_Blast then
+			self.frostBlast = false;
+			self.lockBorderColor = false;
+			self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
+	elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Slag_Pot then
+			self.slagPot = true;
+			self.lockBorderColor = true;
+			self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
+	elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Slag_Pot then
+			self.slagPot = false;
+			self.lockBorderColor = false;
+			self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
+	elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Incinerate_Flesh then
+			self.incinerateFlesh = true;
+			self.lockBorderColor = true;
+			self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
+	elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Incinerate_Flesh then
+			self.incinerateFlesh = false;
+			self.lockBorderColor = false;
+			self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
+	elseif event == "SPELL_AURA_APPLIED" and spellName == LIFEBLOOMER_Penetrating_Cold then
+			self.penetratingCold = true;
+			self.lockBorderColor = true;
+			self:SetBackdropBorderColor(LBColors[9].R, LBColors[9].G, LBColors[9].B, LBColors[9].A);
+	elseif event == "SPELL_AURA_REMOVED" and spellName == LIFEBLOOMER_Penetrating_Cold then
+			self.penetratingCold = false;
+			self.lockBorderColor = false;
+			self:SetBackdropBorderColor(LBColors[6].R, LBColors[6].G, LBColors[6].B, LBColors[6].A);
 	elseif not self.lockBorderColor	then --debuff
 		local corruption = false;
 		for i = 1, 40, 1 do
@@ -553,7 +579,7 @@ function Lifebloomer_UnitFrame_Update(self, elapsed)
 					Lifebloomer_DamageTakenUpdate2(self);
 				end
 				if LBSaved.FlashDmg and 
-				   self.DTPS > 0 and self.prevDTPS == 0 then
+					self.DTPS > 0 and self.prevDTPS == 0 then
 					self.HPBarColor = 12
 					self.flashingHPBar = true
 				elseif self.flashingHPBar then
@@ -729,7 +755,10 @@ function Lifebloomer_AddFrame(self)
 		local frame = _G["LifebloomerMainFrameUnitFrame"..nt];
 		frame:Show();
 		frame:SetAttribute("unit", "target");
-		frame:RegisterEvent("PLAYER_FOCUS_CHANGED");
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			-- The concept of a "focus" target is not present in Classic WoW. We will only register for retail.
+			frame:RegisterEvent("PLAYER_FOCUS_CHANGED");
+		end
 		frame:RegisterEvent("PLAYER_TARGET_CHANGED");
 		-- Now delegated by MainFrame:
 		-- frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
@@ -786,7 +815,10 @@ function Lifebloomer_RemoveFrame(parent)
 	end
 	
 	_G["LifebloomerMainFrameUnitFrame"..nt]:Hide();
-	_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("PLAYER_FOCUS_CHANGED");
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		-- The concept of a "focus" target is not present in Classic WoW. We will only unregister for retail.
+		_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("PLAYER_FOCUS_CHANGED");
+	end
 	_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("PLAYER_TARGET_CHANGED");
 	_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
 	LBVFF = LBVFF + 1;
@@ -953,6 +985,11 @@ function LB_Add_Remove_Frames(np)
 end
 
 function LB_GetUnitRole(unitID)
+	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		-- Wow Classic does not support Roles, resulting in UnitGroupRolesAssigned() throwing an error when called.
+		return "NONE"
+	end
+
 	local role = UnitGroupRolesAssigned(unitID)
 	if not role or role == "NONE" then
 		local specId;
@@ -966,9 +1003,9 @@ function LB_GetUnitRole(unitID)
 	return role or "NONE"
 end
 
-function Lifebloomer_SlashCommand(cmd) 									  
-	if (cmd == "default new" or cmd == "dn") then --Blizzard prevents addon changes while in combat
-		if InCombatLockdown() then 				  --InCombatLockdown() - blizzard function to check if you are in combat
+function Lifebloomer_SlashCommand(cmd)
+	if (cmd == "default new" or cmd == "dn") then	--Blizzard prevents addon changes while in combat
+		if InCombatLockdown() then					--InCombatLockdown() - blizzard function to check if you are in combat
 			DEFAULT_CHAT_FRAME:AddMessage("Cannot make changes while in combat", 0, 1, 0);
 		else
 			DEFAULT_CHAT_FRAME:AddMessage("/|cFFFFFFFFl|rife|cFFFFFFFFb|rloomer |cFFFFFFFFd|refault |cFFFFFFFFn|rew |cFFFFFFFF - Reset All Settings to the New Default Values|r", 0, 1, 0);
@@ -1179,21 +1216,21 @@ function Lifebloomer_DamageTakenUpdate2(self)
 end
 
 function Lifebloomer_deepcopy(object)
-    local lookup_table = {}
-    local function _copy(object)
-        if type(object) ~= "table" then
-            return object
-        elseif lookup_table[object] then
-            return lookup_table[object]
-        end
-        local new_table = {}
-        lookup_table[object] = new_table
-        for index, value in pairs(object) do
-            new_table[_copy(index)] = _copy(value)
-        end
-        return setmetatable(new_table, getmetatable(object))
-    end
-    return _copy(object)
+	local lookup_table = {}
+	local function _copy(object)
+		if type(object) ~= "table" then
+			return object
+		elseif lookup_table[object] then
+			return lookup_table[object]
+		end
+		local new_table = {}
+		lookup_table[object] = new_table
+		for index, value in pairs(object) do
+			new_table[_copy(index)] = _copy(value)
+		end
+		return setmetatable(new_table, getmetatable(object))
+	end
+	return _copy(object)
 end
 
 function Lifebloomer_UIDropdownMenu_OnLoad(self)

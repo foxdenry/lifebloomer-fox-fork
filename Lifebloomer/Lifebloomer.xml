@@ -541,7 +541,10 @@
 		<Scripts>
 			<OnLoad>
 				self:RegisterForClicks("AnyUp");
-				self:RegisterEvent("PLAYER_FOCUS_CHANGED");
+				if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+					-- The concept of a "focus" target is not present in Classic WoW. We will only register for retail.
+					self:RegisterEvent("PLAYER_FOCUS_CHANGED");
+				end
 				self:RegisterEvent("PLAYER_TARGET_CHANGED");
 				-- self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
 				self:SetAttribute("type", "target");
