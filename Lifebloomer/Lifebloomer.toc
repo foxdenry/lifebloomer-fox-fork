@@ -18,4 +18,5 @@ LifebloomerHandlers.lua
 Lifebloomer.xml
 LifebloomerOptions.xml
 
+Libs\LibStub\LibStub.lua
 Libs\LibClassicDurations\LibClassicDurations.xml
