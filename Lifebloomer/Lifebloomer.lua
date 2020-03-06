@@ -1,3 +1,5 @@
+local LibClassicDurations
+
 function Lifebloomer_OnLoad()
 	SlashCmdList["LIFEBLOOMER"] = Lifebloomer_SlashCommand;
 	SLASH_LIFEBLOOMER1 = "/Lifebloomer";
@@ -8,7 +10,7 @@ function Lifebloomer_OnLoad()
 	LBVplayername = LB_GetUnitName("player");
 	loc, LBVClass = UnitClass("player");
 	LBVLevel = UnitLevel("player");
-	LBVersion = "3.5.3";
+	LBVersion = "3.5.5";
 	LB_GCD_Time = 1.5;
 	LBVFF = 0;
 	LB_NameMap = {};
@@ -85,6 +87,12 @@ function Lifebloomer_OnLoad()
 	InterfaceOptionsFrame:SetScript("OnDragStart", function() InterfaceOptionsFrame:StartMoving(); end);
 	InterfaceOptionsFrame:SetScript("OnMouseUp", function() InterfaceOptionsFrame:StopMovingOrSizing(); InterfaceOptionsFrame:SetUserPlaced(false); end);
 	InterfaceOptionsFrame:SetScript("OnDragStop", function() InterfaceOptionsFrame:StopMovingOrSizing(); InterfaceOptionsFrame:SetUserPlaced(false); end);
+
+	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		-- LibClassicDurations is used to calculate spell timers in Classic, as buff timers on characters other than the player's are not available via API.
+		LibClassicDurations = LibStub("LibClassicDurations")
+		LibClassicDurations:RegisterFrame("Lifebloomer")
+	end
 	
 	DEFAULT_CHAT_FRAME:AddMessage("Lifebloomer Loaded.  Type |cFFFFFFFF/lifebloomer|r for help.", 0, 1, 0)
 end
@@ -232,7 +240,6 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		if isMine then
 			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
-				LibClassicDurations = LibStub("LibClassicDurations")
 				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 774, "player")
 				if expirationTimeNew and durationNew then
 					self.RejuvTimer = expirationTimeNew - now - lag/1000;
@@ -259,7 +266,6 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		if isMine then
 			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
-				LibClassicDurations = LibStub("LibClassicDurations")
 				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 8936, "player")
 				if expirationTimeNew and durationNew then
 					self.RegroTimer = expirationTimeNew - now - lag/1000;
