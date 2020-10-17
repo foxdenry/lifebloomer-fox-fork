@@ -1,22 +1,16 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	<Script file="Lifebloomer.lua"></Script>
-	<Button name="LifebloomerUnitTemplate" frameStrata="LOW" virtual="true" hidden="false" inherits="SecureUnitButtonTemplate" enableMouse="true">
+	<Button name="LifebloomerUnitTemplate" frameStrata="LOW" virtual="true" hidden="false" inherits="SecureUnitButtonTemplate,BackdropTemplate" enableMouse="true" mixin="BackdropTemplateMixin">
 		<Size>
 			<AbsDimension x="180" y="40"/>
 		</Size>
-		<Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\Lifebloomer\memberBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-			<EdgeSize>
-				<AbsValue val="16"/>
-			</EdgeSize>
-			<TileSize>
-				<AbsValue val="16"/>
-			</TileSize>
-			<BackgroundInsets>
-				<AbsInset left="5" right="5" top="5" bottom="5"/>
-			</BackgroundInsets>
-			<Color r="0" g="0" b="0" a=".25"/>
-			<BorderColor r="1" g="1" b="1" a="1"/>
-		</Backdrop>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="BACKDROP_LIFEBLOOMER_UNIT_TEMPLATE" type="global" />
+			<KeyValue key="backdropColor" value="BACKDROP_LIFEBLOOMER_BLACK_COLOR" type="global"/>
+			<KeyValue key="backdropColorAlpha" value=".25" type="number"/>
+			<KeyValue key="backdropBorderColor" value="BACKDROP_LIFEBLOOMER_WHITE_COLOR" type="global"/>
+			<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+		</KeyValues>
 		<Frames>
 			<StatusBar name="$parentHPBar" inherits="TextStatusBar">
 				<Anchors>
@@ -712,23 +706,17 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-			<Frame name="LifebloomerTargetOptionsFrame" hidden="true" frameStrata="TOOLTIP">
+			<Frame name="LifebloomerTargetOptionsFrame" hidden="true" frameStrata="TOOLTIP" inherits="BackdropTemplate" mixin="BackdropTemplateMixin">
 				<Size>
 					<AbsDimension x="156" y="72"/>
 				</Size>
-				<Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\Lifebloomer\memberBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-					<EdgeSize>
-						<AbsValue val="16"/>
-					</EdgeSize>
-					<TileSize>
-						<AbsValue val="16"/>
-					</TileSize>
-					<BackgroundInsets>
-						<AbsInset left="3" right="3" top="3" bottom="3"/>
-					</BackgroundInsets>
-					<Color r=".1" g=".1" b=".1" a=".5"/>
-					<BorderColor r="1" g="1" b="1" a="1"/>
-				</Backdrop>
+				<KeyValues>
+					<KeyValue key="backdropInfo" value="BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME" type="global" />
+					<KeyValue key="backdropColor" value="BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME_COLOR" type="global"/>
+					<KeyValue key="backdropColorAlpha" value=".5" type="number"/>
+					<KeyValue key="backdropBorderColor" value="BACKDROP_LIFEBLOOMER_WHITE_COLOR" type="global"/>
+					<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+				</KeyValues>
 				<Frames>
 					<Button name="$parentTarget" clampedToScreen="true" >
 						<Size>

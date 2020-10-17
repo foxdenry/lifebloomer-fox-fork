@@ -85,6 +85,10 @@ function Lifebloomer_SetColors()
 end
 
 function Lifebloomer_SetColor(n)
+	-- Apply the backdrop that corresponds to the frame, defined by key values in the XML file (Lifebloomer.xml, for example.)
+	-- Reference: https://github.com/Stanzilla/WoWUIBugs/wiki/9.0.1-Consolidated-UI-Changes#xml-changes
+	_G["LifebloomerMainFrameUnitFrame"..n]:ApplyBackdrop();
+
 	local i = 1;
 	_G["LifebloomerMainFrameUnitFrame"..n]:SetBackdropColor(LBColors[i].R, LBColors[i].G, LBColors[i].B, LBColors[i].A);
 	i = 2;

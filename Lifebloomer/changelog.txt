@@ -1,3 +1,8 @@
+Lifebloomer Version 3.5.6
+---------------
+Update frame backdrop logic to support WoW 9.0. This change has not been tested for WoW classic at the time of submission, and may require additional
+work to be compatible with WoW classic. It will not be set as a release build for WoW classic until this has been verified.
+
 Lifebloomer Version 3.5.5
 ---------------
 Correct LibClassicDurations dependency usage introduced in 3.5.4 such that Lifebloomer no longer relies on another addon initializing this library.

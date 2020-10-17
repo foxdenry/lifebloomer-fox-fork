@@ -10,7 +10,7 @@ function Lifebloomer_OnLoad()
 	LBVplayername = LB_GetUnitName("player");
 	loc, LBVClass = UnitClass("player");
 	LBVLevel = UnitLevel("player");
-	LBVersion = "3.5.5";
+	LBVersion = "3.5.6";
 	LB_GCD_Time = 1.5;
 	LBVFF = 0;
 	LB_NameMap = {};
@@ -1326,5 +1326,30 @@ function FindUnitBuffBySpellName(unitId, spellName, filter)
 		end
 	end
 end
+
+-- Backdrop info and colors
+BACKDROP_LIFEBLOOMER_UNIT_TEMPLATE = {
+	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileSize = 16,
+	edgeSize = 16,
+	insets = {  left = 5, right = 5, top = 5, bottom = 5 },
+};
+
+BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME = {
+	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileSize = 16,
+	edgeSize = 16,
+	insets = {  left = 3, right = 3, top = 3, bottom = 3 },
+};
+
+BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME_COLOR = CreateColor(0.1, 0.1, 0.1);
+
+BACKDROP_LIFEBLOOMER_BLACK_COLOR = CreateColor(0, 0, 0);
+BACKDROP_LIFEBLOOMER_WHITE_COLOR = CreateColor(1, 1, 1);
+
 
 -- vim: sw=8 sts=8 noexpandtab 
