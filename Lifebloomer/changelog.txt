@@ -1,3 +1,7 @@
+Lifebloomer Version 9.0.5
+---------------
+Bumping supported game version to 9.0.5. No alterations were required as part of this patch.
+
 Lifebloomer Version 9.0.1
 ---------------
 Update frame backdrop logic to support WoW 9.0. This change has not been tested for WoW classic at the time of submission, and may require additional
