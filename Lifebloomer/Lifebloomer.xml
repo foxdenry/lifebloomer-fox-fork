@@ -535,8 +535,7 @@
 		<Scripts>
 			<OnLoad>
 				self:RegisterForClicks("AnyUp");
-				if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-					-- The concept of a "focus" target is not present in Classic WoW. We will only register for retail.
+				if Lifebloomer_IsFocusSupported() then
 					self:RegisterEvent("PLAYER_FOCUS_CHANGED");
 				end
 				self:RegisterEvent("PLAYER_TARGET_CHANGED");

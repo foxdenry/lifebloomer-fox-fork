@@ -88,7 +88,7 @@ function Lifebloomer_OnLoad()
 	InterfaceOptionsFrame:SetScript("OnMouseUp", function() InterfaceOptionsFrame:StopMovingOrSizing(); InterfaceOptionsFrame:SetUserPlaced(false); end);
 	InterfaceOptionsFrame:SetScript("OnDragStop", function() InterfaceOptionsFrame:StopMovingOrSizing(); InterfaceOptionsFrame:SetUserPlaced(false); end);
 
-	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	if not Lifebloomer_IsExternalBuffTrackingSupported() then
 		-- LibClassicDurations is used to calculate spell timers in Classic, as buff timers on characters other than the player's are not available via API.
 		LibClassicDurations = LibStub("LibClassicDurations")
 		LibClassicDurations:RegisterFrame("Lifebloomer")
@@ -227,7 +227,9 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		if isMine then
 			self.LBTimer = expirationTime - now - lag/1000;
 			self.LBMax = duration;
-			--self.Number:SetText(count);
+			if Lifebloomer_IsLifebloomerStackable() then
+				self.Number:SetText(count);
+			end
 			self.LBBarGCD:SetPoint("TOP", self.LBBar, "TOPLEFT", (LBDim.w-10)/self.LBMax*LB_GCD_Time, -1);
 			self.LBBarGCD:SetPoint("BOTTOM", self.LBBar, "BOTTOMLEFT", (LBDim.w-10)/self.LBMax*LB_GCD_Time, 1);
 			self.LBBarGCD:Show();
@@ -238,7 +240,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		end
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Rejuvenation, "PLAYER");
 		if isMine then
-			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			if not Lifebloomer_IsExternalBuffTrackingSupported() then
 				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
 				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 774, "player")
 				if expirationTimeNew and durationNew then
@@ -264,7 +266,7 @@ function Lifebloomer_Buff_Update(self, event, sourceGUID, sourceName, sourceFlag
 		end
 		local name, icon, count, debuffType, duration, expirationTime, isMine, isStealable = FindUnitBuffBySpellName(unit, LIFEBLOOMER_Regrowth, "PLAYER");
 		if isMine then
-			if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			if not Lifebloomer_IsExternalBuffTrackingSupported() then
 				-- WoW Classic does not allow tracking others buffs out of the box. So, we need to use a library to do so.
 				durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, 8936, "player")
 				if expirationTimeNew and durationNew then
@@ -681,7 +683,11 @@ function Lifebloomer_GCDUpdate(self, elapsed)
 			-- Using Regrowth to perform the GCD check as it's currently a spell with no cooldown available to all specs.
 			local start, duration, e = GetSpellCooldown(LIFEBLOOMER_Regrowth);
 			local seconds = GetTime();
-			self:SetValue((duration-(seconds-start))/duration);
+			local gcdTimeRemaining = 0;
+			if (duration ~= 0) then
+				gcdTimeRemaining = (duration-(seconds-start))/duration;
+			end
+			self:SetValue(gcdTimeRemaining);
 		end
 	end
 end
@@ -761,8 +767,7 @@ function Lifebloomer_AddFrame(self)
 		local frame = _G["LifebloomerMainFrameUnitFrame"..nt];
 		frame:Show();
 		frame:SetAttribute("unit", "target");
-		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-			-- The concept of a "focus" target is not present in Classic WoW. We will only register for retail.
+		if Lifebloomer_IsFocusSupported() then
 			frame:RegisterEvent("PLAYER_FOCUS_CHANGED");
 		end
 		frame:RegisterEvent("PLAYER_TARGET_CHANGED");
@@ -821,8 +826,7 @@ function Lifebloomer_RemoveFrame(parent)
 	end
 	
 	_G["LifebloomerMainFrameUnitFrame"..nt]:Hide();
-	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-		-- The concept of a "focus" target is not present in Classic WoW. We will only unregister for retail.
+	if Lifebloomer_IsFocusSupported() then
 		_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("PLAYER_FOCUS_CHANGED");
 	end
 	_G["LifebloomerMainFrameUnitFrame"..nt]:UnregisterEvent("PLAYER_TARGET_CHANGED");
@@ -991,8 +995,8 @@ function LB_Add_Remove_Frames(np)
 end
 
 function LB_GetUnitRole(unitID)
-	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-		-- Wow Classic does not support Roles, resulting in UnitGroupRolesAssigned() throwing an error when called.
+	if not Lifebloomer_IsGroupRoleSupported() then
+		-- If GroupRoles are not supported in the version of WoW being played, return to avoid errors from being thrown.
 		return "NONE"
 	end
 
@@ -1345,6 +1349,28 @@ BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME = {
 	edgeSize = 16,
 	insets = {  left = 3, right = 3, top = 3, bottom = 3 },
 };
+
+function Lifebloomer_IsFocusSupported()
+	-- The concept of a "focus" target is not present in Classic WoW, but *is* supported in Classic TBC and beyond.
+	return WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC;
+end
+
+function Lifebloomer_IsGroupRoleSupported()
+	-- Group role is not supported in Classic or TBC classic. It's expected to be supported in WotlK Classic.
+	return (WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC) and (WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC);
+end
+
+function Lifebloomer_IsExternalBuffTrackingSupported()
+	-- WoW Classic does not allow tracking others buffs out of the box.
+	return WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC;
+end
+
+function Lifebloomer_IsLifebloomerStackable()
+	-- We expect Lifebloom to be stackable until Classic WoD, if that's ever a thing. But we don't have future project ids.
+	-- Classic does not have lifebloom, and retail (shadowlands) doesn't support stacking.
+	-- We're just going say it's stackable in all version of WoW besides retail and classic.
+	return (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE) and (WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC);
+end
 
 BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME_COLOR = CreateColor(0.1, 0.1, 0.1);
 

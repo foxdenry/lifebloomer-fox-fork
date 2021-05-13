@@ -1,3 +1,9 @@
+Lifebloomer Version 9.0.5.a
+---------------
+Adding support for TBC Classic.
+There is an existing bug with the backdrops in the config panel, which exists in Retail. This is an existing bug since 9.0.5, when Blizzard updated how backdrops worked. TBC uses a fork of the 9.0.5 client.
+This version does not support Vanilla Classic due to the backdrop changes, and this version should only be used for Retail and TBC Classic.
+
 Lifebloomer Version 9.0.5
 ---------------
 Bumping supported game version to 9.0.5. No alterations were required as part of this patch.
