@@ -1,3 +1,13 @@
+Lifebloomer Version 9.0.5.b
+---------------
+Fix various issues on the Configuration/Options panels.
+
+Fix options panel backdrop defects, which was a continuation of the 9.0.5 backdrop changes - https://www.curseforge.com/wow/addons/lifebloomer/issues/12
+
+Update dimension sliders to use whole numbers. A change was introduced in 5.4.2 (MoP) that required a boolean to cause the step size to be used for slider ui. https://wowpedia.fandom.com/wiki/API_Slider_SetObeyStepOnDrag
+
+Fix appearance color swatches to correctly show colors instead of dummy texture. This issue was introduced when the new SetColorTexture API was split out from SetTexture, which happened in the Legion patch 7.0.3: https://wowpedia.fandom.com/wiki/API_Texture_SetTexture
+
 Lifebloomer Version 9.0.5.a
 ---------------
 Adding support for TBC Classic.

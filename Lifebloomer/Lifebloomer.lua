@@ -1331,25 +1331,6 @@ function FindUnitBuffBySpellName(unitId, spellName, filter)
 	end
 end
 
--- Backdrop info and colors
-BACKDROP_LIFEBLOOMER_UNIT_TEMPLATE = {
-	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
-	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-	tile = true,
-	tileSize = 16,
-	edgeSize = 16,
-	insets = {  left = 5, right = 5, top = 5, bottom = 5 },
-};
-
-BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME = {
-	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
-	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-	tile = true,
-	tileSize = 16,
-	edgeSize = 16,
-	insets = {  left = 3, right = 3, top = 3, bottom = 3 },
-};
-
 function Lifebloomer_IsFocusSupported()
 	-- The concept of a "focus" target is not present in Classic WoW, but *is* supported in Classic TBC and beyond.
 	return WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC;
@@ -1371,6 +1352,52 @@ function Lifebloomer_IsLifebloomerStackable()
 	-- We're just going say it's stackable in all version of WoW besides retail and classic.
 	return (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE) and (WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC);
 end
+
+-- Backdrop info and colors
+BACKDROP_LIFEBLOOMER_OPTIONS_CONTAINER = {
+	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+	edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+	tile = true,
+	tileSize = 32,
+	edgeSize = 32,
+	insets = {  left = 11, right = 12, top = 12, bottom = 11 },
+};
+
+BACKDROP_LIFEBLOOMER_UNIT_TEMPLATE = {
+	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileSize = 16,
+	edgeSize = 16,
+	insets = {  left = 5, right = 5, top = 5, bottom = 5 },
+};
+
+BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME = {
+	bgFile = "Interface\\AddOns\\Lifebloomer\\memberBackground",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileSize = 16,
+	edgeSize = 16,
+	insets = {  left = 3, right = 3, top = 3, bottom = 3 },
+};
+
+BACKDROP_LIFEBLOOMER_SLIDER_VERTICAL = {
+	bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+	edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+	tile = true,
+	tileSize = 8,
+	edgeSize = 8,
+	insets = {  left = 6, right = 6, top = 3, bottom = 3 },
+};
+
+BACKDROP_LIFEBLOOMER_SLIDER_HORIZONTAL = {
+	bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+	edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+	tile = true,
+	tileSize = 8,
+	edgeSize = 8,
+	insets = {  left = 3, right = 3, top = 6, bottom = 6 },
+};
 
 BACKDROP_LIFEBLOOMER_TARGET_OPTIONS_FRAME_COLOR = CreateColor(0.1, 0.1, 0.1);
 

@@ -18,6 +18,9 @@
 end
 
 function Lifebloomer_SetColors_Sample()
+	LifebloomerOptionsAppearanceSample:ApplyBackdrop();
+	LifebloomerOptionsDimensionsSample:ApplyBackdrop();
+
 	local i = 1;
 	LifebloomerOptionsAppearanceSample:SetBackdropColor(LB_Buffer.LBColors[i].R, LB_Buffer.LBColors[i].G, LB_Buffer.LBColors[i].B, LB_Buffer.LBColors[i].A);
 	LifebloomerOptionsDimensionsSample:SetBackdropColor(LB_Buffer.LBColors[i].R, LB_Buffer.LBColors[i].G, LB_Buffer.LBColors[i].B, LB_Buffer.LBColors[i].A);
@@ -56,7 +59,7 @@ function Lifebloomer_SetColors_Sample()
 	LifebloomerOptionsDimensionsSampleGerBar:SetStatusBarColor(LB_Buffer.LBColors[i].R, LB_Buffer.LBColors[i].G, LB_Buffer.LBColors[i].B, LB_Buffer.LBColors[i].A);
 	for i=1, 17, 1 do
 		if i ~= 14 then
-			_G["LifebloomerOptionsAppearanceTexture"..i.."Texture"]:SetTexture(LB_Buffer.LBColors[i].R, LB_Buffer.LBColors[i].G, LB_Buffer.LBColors[i].B, LB_Buffer.LBColors[i].A);
+			_G["LifebloomerOptionsAppearanceTexture"..i.."Texture"]:SetColorTexture(LB_Buffer.LBColors[i].R, LB_Buffer.LBColors[i].G, LB_Buffer.LBColors[i].B, LB_Buffer.LBColors[i].A);
 		end
 	end
 end
