@@ -1,4 +1,4 @@
-## Interface: 90005
+## Interface: 20501
 ## Title: Lifebloomer
 ## Author: Kryzarel
 ## Version: 9.0.5.b
